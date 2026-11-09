@@ -1,0 +1,26 @@
+{
+  "strategy": {
+    "experimentId": "V1.5f-dailyclose3",
+    "description": "V1.3 with one change: no intraday trail; sell at the next open after a daily close below the previous 3 sessions' lowest low. Arming at +3% and the +1% minimum lock are unchanged."
+  },
+  "data": {
+    "source": "mongo"
+  },
+  "management": {
+    "intervalMinutes": 1
+  },
+  "stockScore": {
+    "minScore": 80
+  },
+  "selection": {
+    "mode": "watchlist",
+    "maxWatchlist": 10
+  },
+  "account": {
+    "maxOpenPositions": 2
+  },
+  "trailing": {
+    "mode": "dailyLow",
+    "dailyLowLookback": 3
+  }
+}

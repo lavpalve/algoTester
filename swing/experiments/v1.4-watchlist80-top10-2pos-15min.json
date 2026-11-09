@@ -1,0 +1,12 @@
+{
+  "strategy": {
+    "experimentId": "V1.4-watchlist80-top10-2pos-15min",
+    "description": "V1.3 with entry confirmation on 15-minute bars (built from 1 or 5-minute bars). The 15-minute opening range is one bar; the VWAP pullback needs 3 completed bars (45 minutes). Stops still managed on 1-minute bars."
+  },
+  "data": { "source": "mongo" },
+  "management": { "intervalMinutes": 1 },
+  "stockScore": { "minScore": 80 },
+  "selection": { "mode": "watchlist", "maxWatchlist": 10 },
+  "account": { "maxOpenPositions": 2 },
+  "entry": { "confirmationIntervalMinutes": 15 }
+}

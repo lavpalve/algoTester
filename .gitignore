@@ -1,0 +1,19 @@
+node_modules/
+.DS_Store
+*.log
+
+# Algorithm result files — trade logs are large, kept local only
+data/algorithms/*/results/
+# Swing V1 research: re-downloadable data cache and run outputs
+data/swing/daily/
+data/swing/intraday*/
+data/swing/market/
+data/swing/fundamentals/
+data/swing/reports/
+data/swing/fetch-failures-*.json
+data/swing/.upstox-request-log.json
+# Paper trading state (keep local; never commit account ledgers).
+# The daily run publishes it to MongoDB instead (swing/publish-paper.js).
+data/swing/paper/
+# Local secrets (Upstox analytics token, MongoDB URIs)
+.env

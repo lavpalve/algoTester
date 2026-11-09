@@ -1,0 +1,33 @@
+{
+  "strategy": {
+    "experimentId": "V1.8b-gate-nifty-roc20",
+    "description": "V1.5b (4% trail) with one change: no new entries while NIFTY 50 is down more than 3% over 20 sessions."
+  },
+  "data": {
+    "source": "mongo"
+  },
+  "management": {
+    "intervalMinutes": 1
+  },
+  "stockScore": {
+    "minScore": 80
+  },
+  "selection": {
+    "mode": "watchlist",
+    "maxWatchlist": 10
+  },
+  "account": {
+    "maxOpenPositions": 2
+  },
+  "trailing": {
+    "trailPct": 4
+  },
+  "market": {
+    "hardGates": {
+      "niftyMaxPctBelowEma50": 3,
+      "niftyMinDayReturnPct": -3,
+      "minDomesticScore": 50,
+      "niftyMinRoc20Pct": -3
+    }
+  }
+}

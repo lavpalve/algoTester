@@ -1,0 +1,25 @@
+{
+  "strategy": {
+    "experimentId": "V1.9a-3pos",
+    "description": "V1.5b (4% trail) with one change: up to 3 open positions (each still risks the band risk of equity; all together within cash)."
+  },
+  "data": {
+    "source": "mongo"
+  },
+  "management": {
+    "intervalMinutes": 1
+  },
+  "stockScore": {
+    "minScore": 80
+  },
+  "selection": {
+    "mode": "watchlist",
+    "maxWatchlist": 10
+  },
+  "account": {
+    "maxOpenPositions": 3
+  },
+  "trailing": {
+    "trailPct": 4
+  }
+}

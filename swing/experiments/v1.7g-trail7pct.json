@@ -1,0 +1,36 @@
+{
+  "strategy": {
+    "experimentId": "V1.7g-trail7pct",
+    "description": "Same as V1.7b but with 7% trailing stop (testing if wider trail helps or hurts vs 4%, 5%, 6%)."
+  },
+  "data": {
+    "source": "mongo"
+  },
+  "management": {
+    "intervalMinutes": 1
+  },
+  "stockScore": {
+    "minScore": 80
+  },
+  "selection": {
+    "mode": "watchlist",
+    "maxWatchlist": 10
+  },
+  "account": {
+    "maxOpenPositions": 2
+  },
+  "trailing": {
+    "trailPct": 7
+  },
+  "fundamentals": {
+    "enabled": true,
+    "mode": "entryCheck",
+    "filter": {
+      "requirePositiveProfit": true,
+      "minRevenueGrowthPct": null,
+      "minProfitGrowthPct": 15,
+      "minRoePct": 15,
+      "combine": "any"
+    }
+  }
+}

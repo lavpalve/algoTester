@@ -1,0 +1,26 @@
+{
+  "strategy": {
+    "experimentId": "V1.5c-trail1atr",
+    "description": "V1.3 with one change: trailing stop 1 × ATR(14) below the high. Arming at +3% and the +1% minimum lock are unchanged."
+  },
+  "data": {
+    "source": "mongo"
+  },
+  "management": {
+    "intervalMinutes": 1
+  },
+  "stockScore": {
+    "minScore": 80
+  },
+  "selection": {
+    "mode": "watchlist",
+    "maxWatchlist": 10
+  },
+  "account": {
+    "maxOpenPositions": 2
+  },
+  "trailing": {
+    "mode": "atr",
+    "trailAtrMultiple": 1
+  }
+}

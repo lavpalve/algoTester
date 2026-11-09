@@ -1,0 +1,10 @@
+{
+  "strategy": {
+    "experimentId": "V1.2-watchlist80-top10",
+    "description": "V1.1 plus a daily watchlist: every session, re-score all stocks from the previous close and watch the top 10 scoring 80 or more on 5-minute bars. The earliest confirmed signal is bought (same-bar ties go to the higher score). One open position at a time."
+  },
+  "data": { "source": "mongo" },
+  "management": { "intervalMinutes": 1 },
+  "stockScore": { "minScore": 80 },
+  "selection": { "mode": "watchlist", "maxWatchlist": 10 }
+}

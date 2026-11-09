@@ -1,0 +1,42 @@
+{
+  "strategy": {
+    "experimentId": "V1.7b-risk1.5",
+    "description": "V1.7b sized at 1.5% risk per trade in favorable markets and 0.75% in cautious ones (V1: 1% / 0.5%). Same entries and exits; bigger positions."
+  },
+  "data": {
+    "source": "mongo"
+  },
+  "management": {
+    "intervalMinutes": 1
+  },
+  "stockScore": {
+    "minScore": 80
+  },
+  "selection": {
+    "mode": "watchlist",
+    "maxWatchlist": 10
+  },
+  "account": {
+    "maxOpenPositions": 2
+  },
+  "trailing": {
+    "trailPct": 4
+  },
+  "fundamentals": {
+    "enabled": true,
+    "mode": "entryCheck",
+    "filter": {
+      "requirePositiveProfit": true,
+      "minRevenueGrowthPct": null,
+      "minProfitGrowthPct": 15,
+      "minRoePct": 15,
+      "combine": "any"
+    }
+  },
+  "market": {
+    "riskPctByBand": {
+      "favorable": 1.5,
+      "cautious": 0.75
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "strategy": {
+    "experimentId": "V1.7a-check-roe15",
+    "description": "V1.5b (4% trail) with one change: watchlist stays the technical top 10; only buy names with profit > 0 and ROE ≥ 15% (Upstox yearly data, public 60 days after year-end)."
+  },
+  "data": {
+    "source": "mongo"
+  },
+  "management": {
+    "intervalMinutes": 1
+  },
+  "stockScore": {
+    "minScore": 80
+  },
+  "selection": {
+    "mode": "watchlist",
+    "maxWatchlist": 10
+  },
+  "account": {
+    "maxOpenPositions": 2
+  },
+  "trailing": {
+    "trailPct": 4
+  },
+  "fundamentals": {
+    "enabled": true,
+    "mode": "entryCheck",
+    "filter": {
+      "requirePositiveProfit": true,
+      "minRevenueGrowthPct": null,
+      "minProfitGrowthPct": null,
+      "minRoePct": 15,
+      "combine": "all"
+    }
+  }
+}

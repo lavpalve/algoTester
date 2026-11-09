@@ -1,0 +1,11 @@
+{
+  "strategy": {
+    "experimentId": "V1.3-watchlist80-top10-2pos",
+    "description": "V1.2 with up to 2 open positions at a time. Each position risks the market-band risk (1% favorable, 0.5% cautious) of current equity; both together cannot exceed available cash. Free slots are counted before the session opens."
+  },
+  "data": { "source": "mongo" },
+  "management": { "intervalMinutes": 1 },
+  "stockScore": { "minScore": 80 },
+  "selection": { "mode": "watchlist", "maxWatchlist": 10 },
+  "account": { "maxOpenPositions": 2 }
+}

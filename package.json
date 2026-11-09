@@ -1,0 +1,50 @@
+{
+  "name": "algotester",
+  "version": "1.0.0",
+  "description": "Algorithmic trading backtester — lightweight file-based, auto-promote winning versions",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "jest --testPathPatterns=test/backtest.test.js --verbose",
+    "test:all": "jest --verbose",
+    "algo": "node scripts/algo.js",
+    "algo:create": "node scripts/algo.js create",
+    "algo:add": "node scripts/algo.js add",
+    "algo:test": "node scripts/algo.js test",
+    "algo:all": "node scripts/algo.js test --all",
+    "algo:status": "node scripts/algo.js status",
+    "algo:compare": "node scripts/algo.js compare",
+    "algo:reset": "node scripts/algo.js reset",
+    "append": "node scripts/appendData.js",
+    "swing:fetch": "node swing/fetch-swing-data.js all",
+    "swing:fetch-intraday": "node swing/fetch-swing-data.js intraday --requirements data/swing/reports/latest/intraday-requirements.json",
+    "swing:backtest": "node swing/backtest-swing.js",
+    "swing:paper": "node swing/paper-trade.js",
+    "swing:daily": "zsh swing/daily.sh",
+    "swing:publish": "node swing/publish-paper.js",
+    "swing:fundamentals": "node swing/fetch-swing-data.js fundamentals",
+    "swing:report": "cat data/swing/paper/V1.7b-check-roe15-or-growth15/latest.md",
+    "summary": "node -e \"console.log(JSON.stringify(require('./src/dataManager').getSummary(),null,2))\""
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/test/**/*.test.js"
+    ],
+    "testTimeout": 30000,
+    "verbose": true
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "mongodb": "^6.22.0",
+    "technicalindicators": "^3.1.0"
+  },
+  "devDependencies": {
+    "jest": "^30.5.2"
+  }
+}

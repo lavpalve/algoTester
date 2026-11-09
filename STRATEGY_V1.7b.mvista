@@ -1,0 +1,43 @@
+# MVista strategy file. Lines starting with # are comments.
+
+NAME: Swing Trading V1.7b - Fundamentals Filtered Breakout
+
+DESCRIPTION: Multi-day swing strategy with breakout entries, trailing stop exits, and fundamentals filter (ROE >=15% OR profit growth >=15%). Scans NIFTY 500 daily, enters on 5-min confirmation. Uses 2xATR stop loss with 4pct trailing stop. 98 trades, 74.5pct win rate, 0.169 avgR over Jun 2024 - Nov 2026.
+
+INDICATORS:
+  EMA20 = EMA(period=20)
+  EMA50 = EMA(period=50)
+  RSI14 = RSI(14)
+  WK52_HIGH = WK52_HIGH
+  WK52_LOW = WK52_LOW
+  VWAP = VWAP(anchor=session)
+  BB = BBANDS(period=20, stdDevMultiplier=2)
+  ORB_HIGH = ORB(rangeMinutes=15)
+  VOLUME = VOLUME
+  CLOSE = CLOSE
+
+# Strategy uses custom stock scoring (0-100) with min score 80
+# Market regime filter: Favorable 60-100, Cautious 40-59, Blocked <40
+# Fundamentals gate: ROE >=15% OR YoY profit growth >=15% (entry check mode)
+# Entry methods: ORB (41pct), VWAP pullback (37pct), Confluence (22pct)
+# Trailing stop: Arms at entry+3pct, trails at highest-4pct, min lock entry+1pct
+
+ENTRY ANY:
+  EMA20 crossover EMA50 AND RSI14 < 70
+  CLOSE < BB.lower AND RSI14 < 30
+  CLOSE > ORB_HIGH.high AND VOLUME > 1.2
+  CLOSE > VWAP AND RSI14 > 40 AND RSI14 < 70
+  CLOSE > EMA20 AND CLOSE > VWAP AND RSI14 < 75
+  CLOSE > WK52_HIGH AND RSI14 < 75
+
+EXIT ANY:
+  EMA20 crossunder EMA50
+  RSI14 > 80
+  CLOSE < WK52_LOW
+
+RISK:
+  stopLoss = 2
+  takeProfit = 4
+  maxPositionPct = 25
+  maxConcurrentPositions = 2
+  requireExitCondition = true

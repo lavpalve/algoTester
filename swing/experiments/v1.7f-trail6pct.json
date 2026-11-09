@@ -1,0 +1,36 @@
+{
+  "strategy": {
+    "experimentId": "V1.7f-trail6pct",
+    "description": "V1.7b with 6% trailing stop instead of 4%. Same fundamentals check (ROE ≥ 15% or profit growth ≥ 15%), wider trail to catch bigger moves at the cost of lower win rate."
+  },
+  "data": {
+    "source": "mongo"
+  },
+  "management": {
+    "intervalMinutes": 1
+  },
+  "stockScore": {
+    "minScore": 80
+  },
+  "selection": {
+    "mode": "watchlist",
+    "maxWatchlist": 10
+  },
+  "account": {
+    "maxOpenPositions": 2
+  },
+  "trailing": {
+    "trailPct": 6
+  },
+  "fundamentals": {
+    "enabled": true,
+    "mode": "entryCheck",
+    "filter": {
+      "requirePositiveProfit": true,
+      "minRevenueGrowthPct": null,
+      "minProfitGrowthPct": 15,
+      "minRoePct": 15,
+      "combine": "any"
+    }
+  }
+}

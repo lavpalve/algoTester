@@ -1,0 +1,34 @@
+{
+  "strategy": {
+    "experimentId": "V1.6a-fund-growth",
+    "description": "V1.5b (4% trail) plus an Upstox fundamentals gate in the daily scan: latest public year: net profit > 0, revenue growth ≥ 10%, profit growth ≥ 15%. Tested only from Jun 2024, when FY2024-vs-FY2023 numbers first became public."
+  },
+  "data": {
+    "source": "mongo"
+  },
+  "management": {
+    "intervalMinutes": 1
+  },
+  "stockScore": {
+    "minScore": 80
+  },
+  "selection": {
+    "mode": "watchlist",
+    "maxWatchlist": 10
+  },
+  "account": {
+    "maxOpenPositions": 2
+  },
+  "trailing": {
+    "trailPct": 4
+  },
+  "fundamentals": {
+    "enabled": true,
+    "filter": {
+      "requirePositiveProfit": true,
+      "minRevenueGrowthPct": 10,
+      "minProfitGrowthPct": 15,
+      "minRoePct": null
+    }
+  }
+}

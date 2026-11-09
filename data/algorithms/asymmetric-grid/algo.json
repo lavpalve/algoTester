@@ -1,0 +1,448 @@
+{
+  "code": "asymmetric-grid",
+  "name": "Asymmetric Grid Strategy",
+  "description": "Asymmetric multi-level grid strategy. Sells in small lots at ATR-adaptive step above entry. Creates tiered rebuy ladders (R1/R2/R3) below the sell price. Protects a core floor of holdings to avoid full exit.",
+  "createdAt": "2026-09-28T16:15:35.885Z",
+  "updatedAt": "2026-10-01T19:59:56.978Z",
+  "promotionThreshold": {
+    "minAvgTradeProfitPct": 2
+  },
+  "bestVersion": 3,
+  "versionSummary": [
+    {
+      "version": 1,
+      "tag": "v1-baseline",
+      "status": "promoted",
+      "ranAt": "2026-09-28T16:30:46.741Z",
+      "dataFile": "CEINSYS_INE016Q01014_1minute",
+      "fromDate": "2026-02-25T12:18:00+05:30",
+      "toDate": "2026-09-25T15:29:00+05:30",
+      "totalCandles": 53817,
+      "tradingDays": 153,
+      "avgTradeProfitPct": 2.6668,
+      "avgPerDayProfitPct": -0.0769,
+      "totalPnl": -8106.71,
+      "totalPnlPct": -11.77,
+      "totalTrades": 26,
+      "winRatePct": 100,
+      "maxDrawdownPct": 14.06,
+      "sharpeRatio": 45.5128,
+      "totalSells": 10,
+      "totalRebuys": 26,
+      "totalSellQty": 100,
+      "totalBuyQty": 92,
+      "promotedAt": "2026-09-28T16:30:46.741Z"
+    },
+    {
+      "version": 2,
+      "tag": "v2-trend-filter",
+      "status": "promoted",
+      "ranAt": "2026-09-28T16:30:50.671Z",
+      "dataFile": "CEINSYS_INE016Q01014_1minute",
+      "fromDate": "2026-02-25T12:18:00+05:30",
+      "toDate": "2026-09-25T15:29:00+05:30",
+      "totalCandles": 53817,
+      "tradingDays": 153,
+      "avgTradeProfitPct": 2.6668,
+      "avgPerDayProfitPct": -0.0769,
+      "totalPnl": -8106.71,
+      "totalPnlPct": -11.77,
+      "totalTrades": 26,
+      "winRatePct": 100,
+      "maxDrawdownPct": 14.06,
+      "sharpeRatio": 45.5128,
+      "totalSells": 10,
+      "totalRebuys": 26,
+      "totalSellQty": 100,
+      "totalBuyQty": 92,
+      "promotedAt": "2026-09-28T16:30:50.671Z"
+    },
+    {
+      "version": 3,
+      "tag": "v3-optimized",
+      "status": "promoted",
+      "ranAt": "2026-10-01T19:59:56.978Z",
+      "dataFile": "CEINSYS_INE016Q01014_1minute",
+      "fromDate": "2026-02-25T12:18:00+05:30",
+      "toDate": "2026-09-25T15:29:00+05:30",
+      "totalCandles": 53817,
+      "tradingDays": 153,
+      "avgTradeProfitPct": 5.5262,
+      "avgPerDayProfitPct": -0.0565,
+      "totalPnl": -5960.39,
+      "totalPnlPct": -8.65,
+      "totalTrades": 18,
+      "winRatePct": 100,
+      "maxDrawdownPct": 13.44,
+      "sharpeRatio": 35.1673,
+      "totalSells": 6,
+      "totalRebuys": 18,
+      "totalSellQty": 90,
+      "totalBuyQty": 90,
+      "promotedAt": "2026-10-01T19:59:56.978Z"
+    },
+    {
+      "version": 4,
+      "tag": "v4-fast-cycle",
+      "status": "promoted",
+      "ranAt": "2026-10-01T19:13:28.513Z",
+      "dataFile": "CEINSYS_INE016Q01014_1minute",
+      "fromDate": "2026-02-25T12:18:00+05:30",
+      "toDate": "2026-09-25T15:29:00+05:30",
+      "totalCandles": 53817,
+      "tradingDays": 153,
+      "avgTradeProfitPct": 2.0538,
+      "avgPerDayProfitPct": -0.0695,
+      "totalPnl": -7330.8,
+      "totalPnlPct": -10.64,
+      "totalTrades": 16,
+      "winRatePct": 100,
+      "maxDrawdownPct": 12.44,
+      "sharpeRatio": 23.8107,
+      "totalSells": 6,
+      "totalRebuys": 16,
+      "totalSellQty": 90,
+      "totalBuyQty": 79,
+      "promotedAt": "2026-10-01T19:13:28.513Z"
+    }
+  ],
+  "versions": [
+    {
+      "version": 1,
+      "tag": "v1-baseline",
+      "notes": "Baseline ATR-adaptive grid, no trend filter.",
+      "createdAt": "2026-09-28T16:15:35.886Z",
+      "indicators": [
+        {
+          "type": "ATR",
+          "source": "close",
+          "params": {
+            "period": 14
+          },
+          "name": "ATR14"
+        },
+        {
+          "type": "EMA",
+          "source": "close",
+          "params": {
+            "period": 50
+          },
+          "name": "EMA50"
+        },
+        {
+          "type": "EMA",
+          "source": "close",
+          "params": {
+            "period": 200
+          },
+          "name": "EMA200"
+        }
+      ],
+      "riskConfig": {
+        "stopLossPercent": 15,
+        "takeProfitPercent": null,
+        "maxConcurrentPositions": 5,
+        "requireExitCondition": false,
+        "intradaySquareOffTime": "15:20"
+      },
+      "gridConfig": {
+        "step": {
+          "mode": "ATR",
+          "atrPeriod": 14,
+          "atrMultiplier": 1.5,
+          "minPct": 0.8,
+          "maxPct": 8,
+          "fixedPct": 3
+        },
+        "position": {
+          "tradingQtyPerStep": 10,
+          "corePositionPct": 70,
+          "minLotSize": 5,
+          "maxActiveTickets": 5
+        },
+        "rebuyLadder": {
+          "allocationMode": "ATR_ADAPTIVE",
+          "maxLevels": 3,
+          "levels": [
+            {
+              "levelName": "R1",
+              "depthMultiplier": 1,
+              "qtyPct": 30
+            },
+            {
+              "levelName": "R2",
+              "depthMultiplier": 2,
+              "qtyPct": 30
+            },
+            {
+              "levelName": "R3",
+              "depthMultiplier": 3.5,
+              "qtyPct": 40
+            }
+          ]
+        },
+        "ticketExpiry": {
+          "maxAgeDays": 30
+        }
+      },
+      "rules": [],
+      "ruleDesc": {
+        "buy": "Rebuy at R1/R2/R3 depth below sell price. ATR-adaptive allocation.",
+        "sell": "Sell when price rises 1.5×ATR% above entry. No trend filter."
+      }
+    },
+    {
+      "version": 2,
+      "tag": "v2-trend-filter",
+      "notes": "Added EMA50 > EMA200 gate. Suppresses sells in downtrend.",
+      "createdAt": "2026-09-28T16:15:35.941Z",
+      "indicators": [
+        {
+          "type": "ATR",
+          "source": "close",
+          "params": {
+            "period": 14
+          },
+          "name": "ATR14"
+        },
+        {
+          "type": "EMA",
+          "source": "close",
+          "params": {
+            "period": 50
+          },
+          "name": "EMA50"
+        },
+        {
+          "type": "EMA",
+          "source": "close",
+          "params": {
+            "period": 200
+          },
+          "name": "EMA200"
+        }
+      ],
+      "riskConfig": {
+        "stopLossPercent": 15,
+        "takeProfitPercent": null,
+        "maxConcurrentPositions": 5,
+        "requireExitCondition": false,
+        "intradaySquareOffTime": "15:20"
+      },
+      "gridConfig": {
+        "step": {
+          "mode": "ATR",
+          "atrPeriod": 14,
+          "atrMultiplier": 1.5,
+          "minPct": 0.8,
+          "maxPct": 8,
+          "fixedPct": 3
+        },
+        "position": {
+          "tradingQtyPerStep": 10,
+          "corePositionPct": 70,
+          "minLotSize": 5,
+          "maxActiveTickets": 5
+        },
+        "rebuyLadder": {
+          "allocationMode": "ATR_ADAPTIVE",
+          "maxLevels": 3,
+          "levels": [
+            {
+              "levelName": "R1",
+              "depthMultiplier": 1,
+              "qtyPct": 30
+            },
+            {
+              "levelName": "R2",
+              "depthMultiplier": 2,
+              "qtyPct": 30
+            },
+            {
+              "levelName": "R3",
+              "depthMultiplier": 3.5,
+              "qtyPct": 40
+            }
+          ]
+        },
+        "ticketExpiry": {
+          "maxAgeDays": 30
+        }
+      },
+      "rules": [],
+      "ruleDesc": {
+        "buy": "Rebuy at R1/R2/R3 below sell. R1 blocked in downtrend.",
+        "sell": "Sell only when EMA50 > EMA200 (uptrend) AND price 1.5×ATR% above entry."
+      }
+    },
+    {
+      "version": 3,
+      "tag": "v3-optimized",
+      "notes": "Wider sell step (2×ATR), deeper rebuy ladder, looser stop.\n• atrStepMultiplier: 1.5 → 2.0 (higher sell margin per cycle)\n• hardStopLossPct: 10 → 18 (stop was triggering too early in volatility)\n• maxDrawdownCircuitBreaker: 18 → 25 (less aggressive pause)\n• rebuyLevels: 1x/2x/3.5x → 1.5x/3x/5x (deeper rebuys = better fill prices)\n• maxActiveTickets: 5 → 3 (fewer stale open ladders)\n• corePositionPct: 70 → 60 (more qty available to trade)\n• tradingQtyPerStep: 10 → 15 (larger lot = more PnL per cycle)",
+      "createdAt": "2026-09-28T16:15:35.994Z",
+      "indicators": [
+        {
+          "type": "ATR",
+          "source": "close",
+          "params": {
+            "period": 14
+          },
+          "name": "ATR14"
+        },
+        {
+          "type": "EMA",
+          "source": "close",
+          "params": {
+            "period": 50
+          },
+          "name": "EMA50"
+        },
+        {
+          "type": "EMA",
+          "source": "close",
+          "params": {
+            "period": 200
+          },
+          "name": "EMA200"
+        }
+      ],
+      "riskConfig": {
+        "stopLossPercent": 18,
+        "takeProfitPercent": null,
+        "maxConcurrentPositions": 3,
+        "requireExitCondition": false,
+        "intradaySquareOffTime": "15:10"
+      },
+      "gridConfig": {
+        "step": {
+          "mode": "ATR",
+          "atrPeriod": 14,
+          "atrMultiplier": 2,
+          "minPct": 1,
+          "maxPct": 8,
+          "fixedPct": 3
+        },
+        "position": {
+          "tradingQtyPerStep": 15,
+          "corePositionPct": 60,
+          "minLotSize": 5,
+          "maxActiveTickets": 3
+        },
+        "rebuyLadder": {
+          "allocationMode": "ATR_ADAPTIVE",
+          "maxLevels": 3,
+          "levels": [
+            {
+              "levelName": "R1",
+              "depthMultiplier": 1.5,
+              "qtyPct": 35
+            },
+            {
+              "levelName": "R2",
+              "depthMultiplier": 3,
+              "qtyPct": 35
+            },
+            {
+              "levelName": "R3",
+              "depthMultiplier": 5,
+              "qtyPct": 30
+            }
+          ]
+        },
+        "ticketExpiry": {
+          "maxAgeDays": 45
+        }
+      },
+      "rules": [],
+      "ruleDesc": {
+        "buy": "Rebuy at 1.5x/3x/5x ATR step below sell. Deeper fills than v1/v2.",
+        "sell": "Sell only in uptrend (EMA50>EMA200) at 2×ATR% above entry. Wider margin."
+      }
+    },
+    {
+      "version": 4,
+      "tag": "v4-fast-cycle",
+      "notes": "Tighter step for more frequent cycles, fixed allocation for predictability.\n• atrStepMultiplier: 2.0 → 1.2 (tighter step = more sell triggers)\n• allocationMode: ATR_ADAPTIVE → FIXED (predictable rebuy qty)\n• maxDailyCycles: 6 → 10 (allow more cycles when market is active)\n• maxTicketAgeDays: 45 → 20 (expire stale tickets faster)",
+      "createdAt": "2026-09-28T16:15:36.046Z",
+      "indicators": [
+        {
+          "type": "ATR",
+          "source": "close",
+          "params": {
+            "period": 14
+          },
+          "name": "ATR14"
+        },
+        {
+          "type": "EMA",
+          "source": "close",
+          "params": {
+            "period": 50
+          },
+          "name": "EMA50"
+        },
+        {
+          "type": "EMA",
+          "source": "close",
+          "params": {
+            "period": 200
+          },
+          "name": "EMA200"
+        }
+      ],
+      "riskConfig": {
+        "stopLossPercent": 18,
+        "takeProfitPercent": null,
+        "maxConcurrentPositions": 3,
+        "requireExitCondition": false,
+        "intradaySquareOffTime": "15:10"
+      },
+      "gridConfig": {
+        "step": {
+          "mode": "ATR",
+          "atrPeriod": 14,
+          "atrMultiplier": 1.2,
+          "minPct": 0.5,
+          "maxPct": 5,
+          "fixedPct": 3
+        },
+        "position": {
+          "tradingQtyPerStep": 15,
+          "corePositionPct": 60,
+          "minLotSize": 5,
+          "maxActiveTickets": 3
+        },
+        "rebuyLadder": {
+          "allocationMode": "FIXED",
+          "maxLevels": 3,
+          "levels": [
+            {
+              "levelName": "R1",
+              "depthMultiplier": 1,
+              "qtyPct": 33
+            },
+            {
+              "levelName": "R2",
+              "depthMultiplier": 2,
+              "qtyPct": 33
+            },
+            {
+              "levelName": "R3",
+              "depthMultiplier": 3,
+              "qtyPct": 34
+            }
+          ]
+        },
+        "ticketExpiry": {
+          "maxAgeDays": 20
+        }
+      },
+      "rules": [],
+      "ruleDesc": {
+        "buy": "Rebuy at 1x/2x/3x ATR step. Fixed 33%/33%/33% allocation per level.",
+        "sell": "Sell in uptrend at 1.2×ATR% above entry. Faster, more frequent cycles."
+      }
+    }
+  ],
+  "currentVersion": 4
+}

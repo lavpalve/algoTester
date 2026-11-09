@@ -1,0 +1,8 @@
+{
+  "strategy": {
+    "experimentId": "V1.1-1min-management",
+    "description": "V1 baseline with one change: stops and the trailing stop are managed on 1-minute bars instead of 5-minute bars (entries still confirmed on 5-minute bars)."
+  },
+  "data": { "source": "mongo" },
+  "management": { "intervalMinutes": 1 }
+}

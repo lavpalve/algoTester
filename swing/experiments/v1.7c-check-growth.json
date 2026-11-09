@@ -1,0 +1,36 @@
+{
+  "strategy": {
+    "experimentId": "V1.7c-check-growth",
+    "description": "V1.5b (4% trail) with one change: watchlist stays the technical top 10; only buy names with profit > 0, profit growth ≥ 15% and revenue growth ≥ 10%."
+  },
+  "data": {
+    "source": "mongo"
+  },
+  "management": {
+    "intervalMinutes": 1
+  },
+  "stockScore": {
+    "minScore": 80
+  },
+  "selection": {
+    "mode": "watchlist",
+    "maxWatchlist": 10
+  },
+  "account": {
+    "maxOpenPositions": 2
+  },
+  "trailing": {
+    "trailPct": 4
+  },
+  "fundamentals": {
+    "enabled": true,
+    "mode": "entryCheck",
+    "filter": {
+      "requirePositiveProfit": true,
+      "minRevenueGrowthPct": 10,
+      "minProfitGrowthPct": 15,
+      "minRoePct": null,
+      "combine": "all"
+    }
+  }
+}

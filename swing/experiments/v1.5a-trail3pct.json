@@ -1,0 +1,25 @@
+{
+  "strategy": {
+    "experimentId": "V1.5a-trail3pct",
+    "description": "V1.3 with one change: trailing stop 3% below the high. Arming at +3% and the +1% minimum lock are unchanged."
+  },
+  "data": {
+    "source": "mongo"
+  },
+  "management": {
+    "intervalMinutes": 1
+  },
+  "stockScore": {
+    "minScore": 80
+  },
+  "selection": {
+    "mode": "watchlist",
+    "maxWatchlist": 10
+  },
+  "account": {
+    "maxOpenPositions": 2
+  },
+  "trailing": {
+    "trailPct": 3
+  }
+}
